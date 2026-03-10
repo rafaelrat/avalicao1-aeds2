@@ -1,62 +1,53 @@
 class SemBalanceamento(object):
-    "Define e inicializa um nó da árvore, rejeitando qualquer valor não inteiro"
-    def __init__(self, key, value=None, left=None, right=None):
-        if not isinstance(key, int):
-            raise TypeError("A chave deve ser um número inteiro")
+    
+    def __init__(self, key, left=None, right=None):
+        """método construtor dos nós"""
+        if not isinstance(key, int): #rejeita qualquer valor não inteiro
+            raise TypeError("A chave deve ser um número inteiro") 
 
-        self.key = key
-        self.value = value
-        self.left = left
-        self.right = right
+        self.key = key #número do nó 
+        self.left = left #nó 'filho' da esquerda
+        self.right = right #nó 'filho' da direita
  
  
-    "---------------------------------------------------------------------------"
-    "BUSCA"
+    """---------------------------------------------------------------------------"""
+   
     def get(self, key):
-
-        if not isinstance(key, int):
+        """método de busca"""
+        if not isinstance(key, int): #rejeita qualquer valor não inteiro
             raise TypeError("A chave de busca deve ser um número inteiro")
 
-        if self.key == key:
-            return self
+        if self.key == key: 
+            return self #retorna o nó se encontrado
 
-        node = self.left if key < self.key else self.right
+        node = self.left if key < self.key else self.right #busca o nó nas raízes da esquerda e direita
         if node is not None:
-            return node.get(key)
-    "---------------------------------------------------------------------------"
-    "ADIÇÃO DE NÓS"
+            return node.get(key) #busca recursivamente o nó desejado percorrendo as raízes
+    """---------------------------------------------------------------------------"""
+    
     def add(self, key):
         """Adiciona elemento à subárvore"""
-        if not isinstance(key, int):
+        if not isinstance(key, int): #rejeita qualquer valor não inteiro
             raise TypeError("A chave deve ser um número inteiro")
 
-        side = 'left' if key < self.key else 'right'
+        side = 'left' if key < self.key else 'right' #organiza a árvore com valores menores à esquerda e maiores à direita
         node = getattr(self, side)
 
         if node is None:
-            setattr(self, side, SemBalanceamento(key))
+            setattr(self, side, SemBalanceamento(key)) #adiciona o novo nó 
         else:
-            node.add(key)
-    "---------------------------------------------------------------------------"
+            node.add(key)  #percorre recursivamente a árvore até achar o lugar a ser implementado 
+    """---------------------------------------------------------------------------"""
 
 # Demonstração
-tree = SemBalanceamento(0)
+tree = SemBalanceamento(0) #cria um nó com chave '0'
 
-for i in range(1, 10):
+for i in range(1, 10): #adiciona nós de 1 a 10 ( organizados linearmente pelo exemplo)
     tree.add(i)
+    
+node = tree.get(11) #busca nó desejado
 
-node = tree.get(11)
-
-if node:
-    print("Nó encontrado:", node.key)
-else:
-    print("Nó não encontrado")
-
-tree.add(11)
-
-node = tree.get(10)
-
-if node:
-    print("Nó encontrado:", node.key)
+if node: #verificação
+    print("Nó encontrado:", node.key) 
 else:
     print("Nó não encontrado")
