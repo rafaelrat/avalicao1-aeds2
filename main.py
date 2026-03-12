@@ -10,7 +10,7 @@ class SemBalanceamento(object):
         self.right = right #nó 'filho' da direita
  
  
-    """---------------------------------------------------------------------------"""
+    # ---------------------------------------------------------------------------
    
     def get(self, key):
         """método de busca"""
@@ -23,7 +23,8 @@ class SemBalanceamento(object):
         node = self.left if key < self.key else self.right #busca o nó nas raízes da esquerda e direita
         if node is not None:
             return node.get(key) #busca recursivamente o nó desejado percorrendo as raízes
-    """---------------------------------------------------------------------------"""
+
+    # ---------------------------------------------------------------------------
     
     def add(self, key):
         """Adiciona elemento à subárvore"""
@@ -37,12 +38,14 @@ class SemBalanceamento(object):
             setattr(self, side, SemBalanceamento(key)) #adiciona o novo nó 
         else:
             node.add(key)  #percorre recursivamente a árvore até achar o lugar a ser implementado 
-    """---------------------------------------------------------------------------"""
+
+    # ---------------------------------------------------------------------------
+
 
 # Demonstração
 tree = SemBalanceamento(0) #cria um nó com chave '0'
 
-for i in range(1, 10): #adiciona nós de 1 a 10 ( organizados linearmente pelo exemplo)
+for i in range(1, 10): #adiciona nós de 1 a 10 (organizados linearmente pelo exemplo)
     tree.add(i)
     
 node = tree.get(11) #busca nó desejado
