@@ -34,7 +34,7 @@ class Node():
                 temp = temp.direita
             
             else:
-                return (temp.valor, comp)
+                print(f"O número {valor} foi encontrado!")
         print(f"Não foi encontrado o número desejado: {valor}")
         print(f"Número de comparações: {comp}")
         return
