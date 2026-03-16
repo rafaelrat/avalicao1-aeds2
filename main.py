@@ -41,15 +41,17 @@ class Node:
         print(f"O valor {valor} não foi encontrado, Comparações: {comp}")
         return comp
 
+#Parte Ordenada
 comp_ordenada = []
 
-for j in range(10_001, 100_001, 10_000):
+for j in range(10_000, 100_001, 10_000):
     raiz = Node(1)
-    for n in range (2, j):
+    for n in range (2, j + 1):
         raiz.insere(n)
     comp_ordenada.append(raiz.busca(100_001))
    
 
+#Parte Desordenada
 comp_aleatoria = []
 
 for i in range(10_000, 100_001, 10_000):
@@ -74,27 +76,17 @@ print(f"\tTabela da Árvore Binária \n{tabela}")
 
 
 plt.figure(figsize=(10, 6))
-plt.plot(values, comp_ordenada, marker='o', linestyle='-', color='b', label='AVL - Ordenado')
+plt.plot(values, comp_aleatoria, marker='o', linestyle='-', color='g', label='BST - Inserção Aleatória')
+plt.plot(values, comp_ordenada, marker='o', linestyle='-', color='b', label='BST - Inserção Ordenada')
 
-plt.title('Árvore AVL: Comparações vs Tamanho de N (Inserções Ordenadas)')
+plt.title('Árvore Binária de Busca: Comparações vs Tamanho de N')
 plt.xlabel('Número de Elementos (N)')
 plt.ylabel('Número de Comparações na Busca')
-
-# O limite superior (ex: 25) acomoda o pior caso teórico para N=100.000
-plt.ylim(0, 25) 
 
 plt.grid(True, linestyle='--', alpha=0.7)
 plt.legend()
 plt.xticks(values)
 plt.tight_layout()
 
-plt.savefig('grafico_avl_ordenado.png')
-plt.show()
-
-
-# Geração da tabela
-df_resultados = pd.DataFrame({
-    'N': values,
-    'Comparações (Ordenado)': comp_ordenada,
-    'Comparações (Aleatório)': comp_aleatoria
-})
+plt.savefig('grafico_bst_comparacoes.png')
+plt.close()
