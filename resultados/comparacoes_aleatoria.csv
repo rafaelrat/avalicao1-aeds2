@@ -1,0 +1,11 @@
+tamanho,estrategia,comparacoes_insercao
+10000,aleatoria,154930
+20000,aleatoria,358800
+30000,aleatoria,522068
+40000,aleatoria,750703
+50000,aleatoria,928966
+60000,aleatoria,1160641
+70000,aleatoria,1340546
+80000,aleatoria,1535692
+90000,aleatoria,1767553
+100000,aleatoria,2020851
